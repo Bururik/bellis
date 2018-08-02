@@ -13,6 +13,7 @@ attributes for car components
 #ifndef COMPONENTS_H
 #define COMPONENTS_H
 
+#include <iostream>
 #include <string>
 
 class GasTank {
