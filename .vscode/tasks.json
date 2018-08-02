@@ -2,12 +2,10 @@
         "command": "g++",
         "args": [
             "-Wall",
-            "-o main.out",
-            "GL01Hello.cpp",
+            "-o",
+            "main.out",
+            "main.cpp",
             "-std=c++17",
-            "-lGL",
-            "-lGLU",
-            "-lglut",
             "&&",
             "./main.out"
           ],

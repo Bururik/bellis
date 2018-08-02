@@ -39,8 +39,7 @@
                 "/opt/rh/devtoolset-7/root/usr/include/c++/7/x86_64-redhat-linux",
                 "/opt/rh/devtoolset-7/root/usr/include/c++/7/tr1",
                 "/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/include/",
-                "/usr/include/linux",
-                "/home/liej/anaconda3/include/python3.6m"
+                "/usr/include/linux"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -53,8 +52,7 @@
                     "/opt/rh/devtoolset-7/root/usr/include/c++/7/x86_64-redhat-linux",
                     "/opt/rh/devtoolset-7/root/usr/include/c++/7/tr1",
                     "/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/include/",
-                    "/usr/include/linux",
-                    "/home/liej/anaconda3/include/python3.6m"
+                    "/usr/include/linux"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
