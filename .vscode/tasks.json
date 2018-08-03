@@ -3,13 +3,14 @@
         "args": [
             "-O3",
             "-Wall",
-            "main.cpp",
-            "components.cpp",
+            "./bellis/bellis/main.cpp",
+            "./bellis/bellis/components.cpp",
+            "./bellis/bellis/car.cpp",
             "-std=c++17",
             "-o",
-            "main.out",
+            "./bellis/Debug/main.out",
             "&&",
-            "./main.out"
+            "./bellis/Debug/main.out"
           ],
         "isShellCommand": true,
         "showOutput": "always",

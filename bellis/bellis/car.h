@@ -1,4 +1,4 @@
-#pragma once
+// #pragma once
 /*
 Sample code:
 ```
@@ -17,10 +17,10 @@ attributes for car type
     acceleration
 */
 
-#ifndef COMPONENTS_H
-#define COMPONENTS_H
+#ifndef CAR_H
+#define CAR_H
 
-#include "stdafx.h"
+// #include "stdafx.h"
 
 #include <iostream>
 #include <string>
@@ -29,30 +29,15 @@ attributes for car type
 class Car {
 public:
     // turn into inhereted constructor
-	Car(std::string model, int speed, int accel);
+	Car(std::string model, int speed, float accel);
     // add getter and setter
-	std::string GetEngineSpecs();
+    void SetEngineSpecs(std::string model_, int speed_, float accel_);
+	std::string GetEngineSpecs() const;
 
 private:
     std::string MyCarModel;
     int MyTopSpeed;
-    int MyAcceleration;
+    float MyAcceleration;
 };
 
 #endif
-
-
-// class Birthday {
-//     public:
-//         Birthday(int m, int d, int y)
-//         : month(m), day(d), year(y)
-//         {  }
-//         void printDate()
-//         {
-//             cout<<month<<"/"<<day <<"/"<<year<<endl;
-//         }
-//     private:
-//         int month;
-//         int day;
-//         int year;
-// };
