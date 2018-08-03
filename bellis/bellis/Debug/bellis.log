@@ -1,1 +1,6 @@
-﻿  bellis.vcxproj -> C:\Users\space\Documents\Visual Studio 2017\Projects\bellis\Debug\bellis.exe
+﻿  stdafx.cpp
+  components.cpp
+  main.cpp
+  Generating Code...
+  LINK : C:\Users\space\Documents\repos\bellis\bellis\Debug\bellis.exe not found or not built by the last incremental link; performing full link
+  bellis.vcxproj -> C:\Users\space\Documents\repos\bellis\bellis\Debug\bellis.exe

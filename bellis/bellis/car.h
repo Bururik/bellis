@@ -32,6 +32,7 @@ public:
     {  }
     // add getter and setter
 
+
 private:
     std::string MyCarModel;
     int MyTopSpeed;
