@@ -20,18 +20,18 @@ attributes for car type
 #ifndef COMPONENTS_H
 #define COMPONENTS_H
 
-#import <iostream>
-#import <string>
-#import "components.h"
+#include "stdafx.h"
+
+#include <iostream>
+#include <string>
+#include "components.h"
 
 class Car {
 public:
     // turn into inhereted constructor
-    Car(std::string model, int speed, int accel)
-    : MyCarModel(model), MyTopSpeed(speed), MyAcceleration(accel)
-    {  }
+	Car(std::string model, int speed, int accel);
     // add getter and setter
-
+	std::string GetEngineSpecs();
 
 private:
     std::string MyCarModel;
