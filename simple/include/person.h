@@ -1,3 +1,6 @@
+#ifndef PERSON_H
+#define PERSON_H
+
 #include <iostream>
 #include "birthday.h"
 
@@ -10,3 +13,5 @@ class Person {
         std::string name;
         Birthday bd;
 };
+
+#endif

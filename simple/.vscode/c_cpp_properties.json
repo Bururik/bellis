@@ -8,7 +8,7 @@
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include",
                 "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
                 "/usr/include",
-                "${workspaceRoot}"
+                "${workspaceFolder}"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -19,7 +19,7 @@
                     "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/8.1.0/include",
                     "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
                     "/usr/include",
-                    "${workspaceRoot}"
+                    "${workspaceFolder}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
@@ -34,12 +34,14 @@
             "includePath": [
                 "/usr/include",
                 "/usr/local/include",
-                "${workspaceRoot}",
+                "${workspaceFolder}",
                 "/opt/rh/devtoolset-7/root/usr/include/c++/7",
                 "/opt/rh/devtoolset-7/root/usr/include/c++/7/x86_64-redhat-linux",
                 "/opt/rh/devtoolset-7/root/usr/include/c++/7/tr1",
                 "/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/include/",
-                "/usr/include/linux"
+                "/usr/include/linux",
+                "${workspaceFolder}/include/",
+                "${env:HOME}/anaconda3/include/python3.6m"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -47,12 +49,14 @@
                 "path": [
                     "/usr/include",
                     "/usr/local/include",
-                    "${workspaceRoot}",
+                    "${workspaceFolder}",
                     "/opt/rh/devtoolset-7/root/usr/include/c++/7",
                     "/opt/rh/devtoolset-7/root/usr/include/c++/7/x86_64-redhat-linux",
                     "/opt/rh/devtoolset-7/root/usr/include/c++/7/tr1",
                     "/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/include/",
-                    "/usr/include/linux"
+                    "/usr/include/linux",
+                    "${workspaceFolder}/include/",
+                    "${env:HOME}/anaconda3/include/python3.6m"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
@@ -65,7 +69,7 @@
             "name": "Win32",
             "includePath": [
                 "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
-                "${workspaceRoot}"
+                "${workspaceFolder}"
             ],
             "defines": [
                 "_DEBUG",
@@ -75,7 +79,7 @@
             "browse": {
                 "path": [
                     "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
-                    "${workspaceRoot}"
+                    "${workspaceFolder}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""

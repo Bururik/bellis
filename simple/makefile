@@ -9,10 +9,12 @@
 
 # Compiler options
 CC=g++
-VERS=-std=c++17
-CFLAGS=-O3 -Wall -Iinclude
+VERS=-std=c++11
+CFLAGS=-O3 -Wall -Iinclude -fPIC
+PYBIND=-I/home/liej/anaconda3/include/python3.6m
+PYTHON=/home/liej/anaconda3/lib/libpython3.6m.so
 LDFLAGS=-Llib -lsimple
-COMPLDFLAGS=-L /opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/
+COMPLDFLAGS=-L/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/
 EXECUTABLE_NAME=main
 
 # Folders
@@ -49,7 +51,10 @@ all:
 
 # The reverse order is to keep the compilation order in check 
 $(EXECUTABLE_FILES): $(LIB)/libsimple.a
-	$(CC) $(VERS) $(COMPLDFLAGS) -o $@ $(LDFLAGS)
+# $(EXECUTABLE_FILES): $(OBJECT_FILES)
+	@#$(CC) $(VERS) $(COMPLDFLAGS) -o $@ $(PYTHON) $(LIB)/birthday.cpython-36m-x86_64-linux-gnu.so
+	$(CC) $(VERS) -L/usr/lib/gcc/x86_64-redhat-linux/4.8.2/ -o $@ -L/home/liej/Documents/repos/bellis/simple/lib -lsimple -Wl,-rpath,/home/liej/Documents/repos/bellis/simple/lib
+	@#$(CC) $(VERS) $(COMPLDFLAGS) -o $@ $(LDFLAGS)
 	@echo "Build successful!" # the @ suppresses the echoing of a command
 
 # I would have preffered to make separate .a files
@@ -59,15 +64,17 @@ $(EXECUTABLE_FILES): $(LIB)/libsimple.a
 # also hardcoding...
 $(LIB)/libsimple.a: $(OBJECT_FILES)
 	@echo "Creating static libraries: libsimple.a"
-	@ar -cq $@ $^ 
+	@#ar -cq $@ $^ 
+	$(CC) -shared $(OBJ)/main.o $(OBJ)/birthday.o $(OBJ)/person.o -o $(LIB)/libsimple.so
+	@#$(CC) -shared `python3 -m pybind11 --includes` $(OBJ)/main.o $(OBJ)/birthday.o $(OBJ)/person.o -o $(LIB)/birthday`python3-config --extension-suffix` 
 
 $(OBJECT_FILES): $(OBJ)/%.o: $(SRC)/%.cpp
 	@echo "Producing object code for: " $(@F)
-	@mkdir -p $(@D)
-	@mkdir -p $(BIN)
-	@mkdir -p $(LIB)
+	mkdir -p $(@D)
+	mkdir -p $(BIN)
+	mkdir -p $(LIB)
 
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< $(PYBIND)
 
 ##########################################
 #                  Old                   #
