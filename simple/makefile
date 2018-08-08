@@ -8,8 +8,8 @@
 ##########################################
 
 # Compiler options
-CC=g++
-VERS=-std=c++11
+CC=c++
+VERS=-std=c++17
 CFLAGS=-O3 -Wall -Iinclude -fPIC
 PYBIND=-I/home/liej/anaconda3/include/python3.6m
 PYTHON=/home/liej/anaconda3/lib/libpython3.6m.so
@@ -21,6 +21,7 @@ EXECUTABLE_NAME=main
 SRC=src
 LIB=lib
 BIN=bin
+BIND=bindings
 OBJ=build
 
 # Files
@@ -51,10 +52,7 @@ all:
 
 # The reverse order is to keep the compilation order in check 
 $(EXECUTABLE_FILES): $(LIB)/libsimple.a
-# $(EXECUTABLE_FILES): $(OBJECT_FILES)
-	@#$(CC) $(VERS) $(COMPLDFLAGS) -o $@ $(PYTHON) $(LIB)/birthday.cpython-36m-x86_64-linux-gnu.so
-	$(CC) $(VERS) -L/usr/lib/gcc/x86_64-redhat-linux/4.8.2/ -o $@ -L/home/liej/Documents/repos/bellis/simple/lib -lsimple -Wl,-rpath,/home/liej/Documents/repos/bellis/simple/lib
-	@#$(CC) $(VERS) $(COMPLDFLAGS) -o $@ $(LDFLAGS)
+	@$(CC) $(VERS) $(COMPLDFLAGS) -o $@ $(LDFLAGS)
 	@echo "Build successful!" # the @ suppresses the echoing of a command
 
 # I would have preffered to make separate .a files
@@ -64,17 +62,19 @@ $(EXECUTABLE_FILES): $(LIB)/libsimple.a
 # also hardcoding...
 $(LIB)/libsimple.a: $(OBJECT_FILES)
 	@echo "Creating static libraries: libsimple.a"
-	@#ar -cq $@ $^ 
-	$(CC) -shared $(OBJ)/main.o $(OBJ)/birthday.o $(OBJ)/person.o -o $(LIB)/libsimple.so
-	@#$(CC) -shared `python3 -m pybind11 --includes` $(OBJ)/main.o $(OBJ)/birthday.o $(OBJ)/person.o -o $(LIB)/birthday`python3-config --extension-suffix` 
+	@ar -cq $@ $^ 
+	@echo Compiling pybinding shared object: birthday`python3-config --extension-suffix`
+	@$(CC) $(CFLAGS) $(VERS) -shared `python3 -m pybind11 --includes` $(OBJ)/birthday.o $(BIND)/birthday_binding.cpp -o $(LIB)/birthday`python3-config --extension-suffix`
+	@echo Compiling pybinding shared object: person`python3-config --extension-suffix`
+	@$(CC) $(CFLAGS) $(VERS) -shared `python3 -m pybind11 --includes` $(OBJ)/birthday.o $(OBJ)/person.o $(BIND)/person_binding.cpp -o $(LIB)/person`python3-config --extension-suffix`
 
 $(OBJECT_FILES): $(OBJ)/%.o: $(SRC)/%.cpp
 	@echo "Producing object code for: " $(@F)
-	mkdir -p $(@D)
-	mkdir -p $(BIN)
-	mkdir -p $(LIB)
+	@mkdir -p $(@D)
+	@mkdir -p $(BIN)
+	@mkdir -p $(LIB)
 
-	$(CC) $(CFLAGS) -c -o $@ $< $(PYBIND)
+	@$(CC) $(CFLAGS) -c -o $@ $< $(PYBIND)
 
 ##########################################
 #                  Old                   #
