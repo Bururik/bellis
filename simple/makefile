@@ -10,8 +10,8 @@
 # Compiler options
 CC=c++
 VERS=-std=c++17
-CFLAGS=-O3 -Wall -Iinclude -fPIC
-PYBIND=-I/home/liej/anaconda3/include/python3.6m
+CFLAGS=-O3 -Wall -fPIC
+INC=-Iinclude `python3 -m pybind11 --includes`
 PYTHON=/home/liej/anaconda3/lib/libpython3.6m.so
 LDFLAGS=-Llib -lsimple
 COMPLDFLAGS=-L/opt/rh/devtoolset-7/root/usr/lib/gcc/x86_64-redhat-linux/7/
@@ -64,9 +64,9 @@ $(LIB)/libsimple.a: $(OBJECT_FILES)
 	@echo "Creating static libraries: libsimple.a"
 	@ar -cq $@ $^ 
 	@echo Compiling pybinding shared object: birthday`python3-config --extension-suffix`
-	@$(CC) $(CFLAGS) $(VERS) -shared `python3 -m pybind11 --includes` $(OBJ)/birthday.o $(BIND)/birthday_binding.cpp -o $(LIB)/birthday`python3-config --extension-suffix`
+	@$(CC) $(CFLAGS) $(VERS) $(INC) -shared $(OBJ)/birthday.o $(BIND)/birthday_binding.cpp -o $(LIB)/birthday`python3-config --extension-suffix`
 	@echo Compiling pybinding shared object: person`python3-config --extension-suffix`
-	@$(CC) $(CFLAGS) $(VERS) -shared `python3 -m pybind11 --includes` $(OBJ)/birthday.o $(OBJ)/person.o $(BIND)/person_binding.cpp -o $(LIB)/person`python3-config --extension-suffix`
+	@$(CC) $(CFLAGS) $(VERS) $(INC) -shared $(OBJ)/birthday.o $(OBJ)/person.o $(BIND)/person_binding.cpp -o $(LIB)/person`python3-config --extension-suffix`
 
 $(OBJECT_FILES): $(OBJ)/%.o: $(SRC)/%.cpp
 	@echo "Producing object code for: " $(@F)
@@ -74,7 +74,7 @@ $(OBJECT_FILES): $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(BIN)
 	@mkdir -p $(LIB)
 
-	@$(CC) $(CFLAGS) -c -o $@ $< $(PYBIND)
+	@$(CC) $(CFLAGS) -c -o $@ $< 
 
 ##########################################
 #                  Old                   #
